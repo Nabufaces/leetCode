@@ -1,29 +1,23 @@
-function swap(arr, i, j) {
-    if(i !== j) {
-        let temp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = temp;
-    }
-}
-
 /**
  * @param {number[]} arr
  * @return {number[][]}
  */
 const permute = function(arr) {
-    const len = arr.length, output = [];
+  const len = arr.length, output = [];
 
-    function backTrack(arr, first = 0) {
-        if(first === len - 1) {
-            output.push([...arr]);
-        }
-        for(let i = first; i < len; i++) {
-            swap(arr, first, i);
-            backTrack(arr, first + 1);
-            swap(arr, first, i);
-        }
+  function backTrace(tempList) {
+    if (tempList.length === len) {
+      output.push([...tempList]);
+      return;
     }
+    for (let i = 0; i < len; i++) {
+      if (tempList.includes(arr[i])) continue;
+      tempList.push(arr[i]);
+      backTrace(tempList);
+      tempList.pop();
+    }
+  }
+  backTrace([]);
 
-    backTrack(arr);
-    return output;
+  return output;
 };

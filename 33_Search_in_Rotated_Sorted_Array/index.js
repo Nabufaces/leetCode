@@ -19,13 +19,13 @@ function search(nums, target) {
       if(nums[mid] === target) return mid;
       else if(nums[low] === target) return low;
       else if(nums[high] === target) return high;
-      else if(nums[low] > nums[mid]) { // 左半边有序
+      else if(nums[low] > nums[mid]) { // 右半边有序
         if(nums[mid] < target && target < nums[high]) {
           low = mid + 1;
         } else {
           high = mid - 1;
         }
-      } else { // 右半边有序
+      } else { // 左半边有序
         if(nums[low] < target && target <nums[mid]) {
           high = mid - 1;
         } else {
